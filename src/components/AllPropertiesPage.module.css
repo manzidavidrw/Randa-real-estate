@@ -1,0 +1,56 @@
+.allPropertiesPage {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  font-family: var(--header-font);
+  font-size: 3rem;
+  color: var(--primary-blue);
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .allPropertiesPage {
+    padding: 20px 15px;
+  }
+
+  .pageHeader {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.pageButton {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.pageButton:hover:not(:disabled),
+.pageButton.activePage {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

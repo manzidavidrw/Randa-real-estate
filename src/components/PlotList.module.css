@@ -1,0 +1,27 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Larger cards */
+  gap: 40px; /* Increased gap */
+  padding: 60px 40px;
+  background: var(--neutral-light);
+  justify-items: center;
+  border-radius: 12px; /* Added border-radius */
+  box-shadow: var(--shadow-color) 0 4px 15px; /* Added box-shadow */
+}
+
+.listView {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Slightly increased gap for list items */
+  padding: 30px 40px; /* Adjusted padding for list view to match grid side padding */
+  background: var(--neutral-light);
+  border-radius: 12px; /* Match grid border-radius */
+  box-shadow: var(--shadow-color) 0 4px 15px; /* Match grid box-shadow */
+}
+
+@media (max-width: 768px) {
+  .list {
+    grid-template-columns: 1fr;
+    padding: 30px 20px;
+  }
+}

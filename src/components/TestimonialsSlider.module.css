@@ -1,0 +1,119 @@
+.testimonialsSliderContainer {
+  padding: 40px 0;
+  background-color: var(--surface-color);
+  text-align: center;
+  margin-top: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-color) 0 4px 15px;
+}
+
+.testimonialsSliderContainer h2 {
+  font-family: var(--header-font);
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.sliderControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.testimonialsSlider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 20px;
+  padding: 10px 0;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.testimonialsSlider::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.testimonialCard {
+  flex: 0 0 auto;
+  width: 350px; /* Wider card for testimonials */
+  background-color: var(--background-color);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: var(--shadow-color) 0 2px 8px;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-5px);
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.author {
+  font-weight: 700;
+  color: var(--primary-blue);
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: var(--text-light-color);
+}
+
+.scrollButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-color) 0 2px 5px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.scrollButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.scrollButton:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .testimonialsSliderContainer h2 {
+    font-size: 2rem;
+  }
+
+  .sliderControls {
+    gap: 10px;
+  }
+
+  .testimonialCard {
+    width: 300px;
+  }
+
+  .scrollButton {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,72 @@
+.createPlotForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px; /* Slightly wider for plot details */
+  margin: 0 auto;
+  padding: 25px;
+  background-color: var(--surface-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow-color) 0 4px 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="number"],
+.formGroup textarea,
+.formGroup select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formGroup textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="number"]:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.formGroup input[type="file"] {
+  padding: 8px 0; /* Adjust padding for file input */
+}
+
+.submitButton {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}

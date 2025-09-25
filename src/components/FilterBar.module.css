@@ -1,0 +1,166 @@
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  --filterbar-gap: 30px; /* Define gap as a CSS variable */
+  gap: var(--filterbar-gap); /* Use the variable */
+  padding: 40px 50px;
+  background: var(--neutral-light);
+  border-bottom: none; /* Remove bottom border for a cleaner look */
+  justify-content: center;
+  align-items: stretch; /* Ensure all filter groups have the same height */
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Slightly larger gap within group */
+  flex: 1; /* Allow flexible growth and shrinking, but distribute space equally */
+  min-width: 250px; /* Retain min-width for stacking on smaller screens */
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Soft shadow */
+}
+
+.filterGroup label {
+  font-family: var(--header-font);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--neutral-dark);
+  margin-bottom: 5px;
+}
+
+.filterInput {
+  padding: 14px 18px;
+  border: 1px solid var(--border-shadow-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  color: var(--neutral-dark);
+  background-color: white; /* Ensure background is white */
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.locationFilterInput {
+  max-width: 180px; /* Reduced width for location field */
+}
+
+.filterInput:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.priceRange {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.priceRange span {
+  font-size: 1rem;
+  color: var(--neutral-dark);
+  font-weight: 500;
+}
+
+.priceSlider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px; /* Slightly thicker slider */
+  background: #e0e0e0;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity .2s;
+  border-radius: 5px;
+}
+
+.priceSlider:hover {
+  opacity: 1;
+}
+
+.priceSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px; /* Larger thumb */
+  height: 24px; /* Larger thumb */
+  border-radius: 50%;
+  background: var(--primary-blue);
+  cursor: grab;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.priceSlider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  cursor: grab;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.plotTypeButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* Slightly larger gap */
+}
+
+.typeButton {
+  background: #f0f3f6;
+  color: var(--neutral-dark);
+  border: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  border-radius: 30px; /* More rounded */
+  cursor: pointer;
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease, background 0.2s ease;
+}
+
+.typeButton:hover {
+  background: #e6e9ed;
+  color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.typeButton.active {
+  background: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .filterBar {
+    padding: 30px 20px;
+  }
+
+  .filterGroup {
+    min-width: unset;
+    flex: 1 1 100%; /* Ensure groups stack on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .filterBar {
+    flex-direction: column;
+    padding: 25px 15px;
+    gap: 20px;
+  }
+
+  .filterGroup {
+    margin-bottom: 15px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05); /* Lighter shadow for mobile */
+  }
+
+  .filterInput, .priceSlider, .typeButton {
+    max-width: none;
+  }
+
+  .priceRange span {
+    font-size: 0.9rem;
+  }
+}

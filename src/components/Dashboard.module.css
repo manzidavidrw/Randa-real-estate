@@ -1,0 +1,342 @@
+.dashboardContainer {
+  display: flex;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: var(--surface-color);
+  padding: 30px 25px;
+  box-shadow: var(--shadow-color) 0px 8px 30px rgba(0, 0, 0, 0.2); /* Deeper, more diffused shadow */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 20px; /* Increased border-radius for a softer, modern look */
+  border: 1px solid var(--border-color); /* Subtle border for definition */
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease; /* Smooth transition for theme changes */
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary-color);
+  font-size: 2.3rem; /* Slightly larger font size */
+  margin-bottom: 0;
+  font-weight: 800;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.sidebar nav {
+  flex-grow: 1;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 12px; /* Slightly more rounded links */
+  margin-bottom: 10px; /* Consistent margin */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  transform: translateX(5px); /* More noticeable shift on hover */
+  box-shadow: var(--shadow-color) 4px 4px 15px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+}
+
+.sidebar nav a.active {
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  box-shadow: var(--shadow-color) 0 6px 25px rgba(0, 0, 0, 0.3); /* Even more pronounced shadow for active state */
+  transform: translateX(0);
+}
+
+.sidebar nav a svg {
+  margin-right: 15px;
+  font-size: 1.5rem; /* Larger icon size for more impact */
+  flex-shrink: 0;
+}
+
+.themeToggleContainer {
+  display: flex;
+  justify-content: flex-start; /* Aligned to start for normal settings look */
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  width: 100%;
+}
+
+.themeToggleButton {
+  background-color: transparent; /* Make background transparent for toggle switch */
+  border: none; /* Remove border */
+  padding: 0; /* Remove padding */
+  color: inherit; /* Inherit color */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: none; /* Remove transition for button itself as slider has it */
+  box-shadow: none; /* Remove box-shadow */
+  transform: none; /* Remove transform */
+}
+
+.themeToggleButton:hover {
+  filter: none; /* Remove filter */
+  transform: none; /* Remove transform */
+  box-shadow: none; /* Remove box-shadow */
+}
+
+.dashboardContent {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: var(--background-color);
+  border-radius: 12px;
+  margin: 20px;
+  box-shadow: var(--shadow-color) 0 5px 20px;
+}
+
+.dashboardContent h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  color: var(--text-color);
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.dashboardSection {
+  background-color: var(--surface-color);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-color) 0 2px 10px;
+}
+
+.dashboardSection.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.dashboardSection.settings h2 {
+  margin-bottom: 15px;
+}
+
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color); /* Separator for settings items */
+}
+
+.settingItem:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+
+.settingItem span {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* The switch - the box around the slider */
+.themeToggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.themeToggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.sliderRound {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--secondary-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 28px;
+}
+
+.sliderRound:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .sliderRound {
+  background-color: var(--primary-color);
+}
+
+input:focus + .sliderRound {
+  box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .sliderRound:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+.dashboardSection h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.logoutButton {
+  margin-top: auto;
+  background-color: #dc3545;
+  color: white;
+  padding: 16px 25px; /* Larger padding for a more substantial button */
+  border-radius: 12px; /* Consistent border radius */
+  cursor: pointer;
+  font-size: 1.15rem; /* Slightly larger font size */
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logoutButton:hover {
+  background-color: #c82333;
+  transform: translateY(-3px); /* More pronounced lift */
+  box-shadow: var(--shadow-color) 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .dashboardContainer {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 25px;
+    gap: 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: var(--shadow-color) 0px 5px 15px;
+  }
+
+  .sidebarHeader {
+    width: auto;
+    justify-content: flex-start;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    flex-grow: 1;
+  }
+
+  .sidebar h2 {
+    font-size: 1.8rem;
+    text-align: left;
+  }
+
+  .sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    flex-grow: unset;
+    width: 100%;
+    order: 3;
+  }
+
+  .sidebar nav a {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    transform: translateX(0);
+    box-shadow: var(--shadow-color) 2px 2px 8px;
+  }
+
+  .sidebar nav a:hover {
+    transform: translateX(0);
+    box-shadow: var(--shadow-color) 2px 2px 10px;
+  }
+
+  .sidebar nav a svg {
+    margin-right: 10px;
+  }
+
+  .themeToggleContainer {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    order: 2;
+    width: auto;
+    justify-content: center; /* Center on small screens */
+  }
+
+  .themeToggleButton {
+    width: auto;
+    margin: 0;
+  }
+
+  .logoutButton {
+    width: auto;
+    margin-top: 0;
+    order: 1;
+  }
+
+  .dashboardContent {
+    margin: 15px;
+    padding: 30px;
+  }
+
+  .dashboardContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .dashboardSection h2 {
+    font-size: 1.8rem;
+  }
+
+  .dashboardSection.settings {
+    align-items: center; /* Center items on small screens */
+  }
+}

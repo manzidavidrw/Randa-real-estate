@@ -1,0 +1,249 @@
+.plotCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 100%;
+  max-width: 380px; /* Slightly larger max-width */
+}
+
+.plotCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.plotImageContainer {
+  position: relative;
+  height: 250px; /* Taller images */
+  overflow: hidden;
+}
+
+.plotImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.plotCard:hover .plotImage {
+  transform: scale(1.05);
+}
+
+.plotTypeBadge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--primary-blue);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.plotInfo {
+  padding: 20px;
+}
+
+.plotTitle {
+  font-family: var(--header-font);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--neutral-dark);
+}
+
+.plotLocation {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.plotLocation svg {
+  margin-right: 8px;
+  color: var(--primary-blue);
+}
+
+.plotDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.detailItem svg {
+  margin-right: 5px;
+  color: var(--secondary-green);
+}
+
+.plotPrice {
+  font-family: var(--header-font);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.viewDetailsButton {
+  background: var(--secondary-green);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 20px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.viewDetailsButton:hover {
+  background: #218838;
+  transform: translateY(-2px);
+}
+
+/* List View Specific Styles */
+.plotCard.listView {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  height: auto;
+  padding: 20px; /* Adjusted padding */
+  border-radius: 10px; /* Consistent border-radius */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Lighter shadow for list items */
+  align-items: center; /* Vertically align items */
+}
+
+.plotCard.listView:hover {
+  transform: translateY(-3px); /* Subtle hover effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.plotCard.listView .plotImageContainer {
+  flex: 0 0 220px; /* Slightly smaller fixed width for image in list view */
+  height: 160px;
+  margin-right: 25px; /* Increased margin */
+  border-radius: 8px; /* Consistent border-radius */
+}
+
+.plotCard.listView .plotImage {
+  border-radius: 8px; /* Consistent border-radius */
+}
+
+.plotCard.listView .plotTypeBadge {
+  top: 10px;
+  left: 10px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.plotCard.listView .plotInfo {
+  flex-grow: 1;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plotCard.listView .plotTitle {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.plotCard.listView .plotLocation {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.plotCard.listView .plotDetails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color); /* Use CSS variable */
+  gap: 15px;
+}
+
+.plotCard.listView .detailItem {
+  font-size: 0.9rem;
+}
+
+.plotCard.listView .plotPrice {
+  font-size: 1.2rem;
+}
+
+.plotCard.listView .viewDetailsButton {
+  width: auto;
+  margin-top: 0; /* Remove top margin */
+  align-self: center; /* Center button in list view if space allows */
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  margin-left: auto; /* Push button to the right */
+}
+
+@media (max-width: 992px) {
+  .plotCard.listView .plotImageContainer {
+    flex: 0 0 180px;
+    height: 140px;
+    margin-right: 15px;
+  }
+
+  .plotCard.listView .plotTitle {
+    font-size: 1.2rem;
+  }
+
+  .plotCard.listView .plotPrice {
+    font-size: 1.1rem;
+  }
+
+  .plotCard.listView .viewDetailsButton {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .plotCard.listView {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .plotCard.listView .plotImageContainer {
+    width: 100%;
+    height: 200px;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .plotCard.listView .plotInfo {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .plotCard.listView .plotDetails {
+    justify-content: center;
+  }
+
+  .plotCard.listView .viewDetailsButton {
+    width: 100%;
+    align-self: stretch;
+  }
+}

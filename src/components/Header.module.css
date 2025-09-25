@@ -1,0 +1,157 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: var(--neutral-light);
+  color: var(--neutral-dark);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo {
+  font-family: var(--header-font);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  margin-right: 30px;
+}
+
+.searchBarContainer {
+  display: flex;
+  flex-grow: 1;
+  max-width: 500px;
+  border: 1px solid var(--border-shadow-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.searchBarContainer:focus-within {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-blue);
+}
+
+.searchBarInput {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  color: var(--neutral-dark);
+  background-color: white; /* Ensure background is white */
+}
+
+.searchButton {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.searchButton:hover {
+  background: #0056b3;
+}
+
+.nav {
+  display: flex;
+  margin-left: 30px;
+  gap: 25px;
+}
+
+.nav a {
+  font-family: var(--body-font);
+  color: var(--neutral-dark);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--primary-blue);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 30px;
+}
+
+.loginButton {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--body-font);
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.loginButton:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.userIcon {
+  color: var(--neutral-dark);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.userIcon:hover {
+  color: var(--primary-blue);
+  transform: scale(1.1);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1024px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 15px 30px;
+  }
+
+  .logo {
+    margin-bottom: 15px;
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .searchBarContainer {
+    order: 3; /* Move search bar to bottom on smaller screens */
+    width: 100%;
+    max-width: none;
+    margin-top: 15px;
+  }
+
+  .nav {
+    order: 2;
+    margin-left: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .headerActions {
+    order: 1;
+    margin-left: auto; /* Push actions to the right */
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+}

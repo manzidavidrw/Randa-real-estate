@@ -1,0 +1,129 @@
+.plotDetailsContainer {
+  padding: 20px; /* Reduced padding for smaller screens and full width */
+  max-width: 100%; /* Ensure it takes full width */
+  margin: 0 auto;
+  font-family: var(--body-font);
+  color: var(--neutral-dark);
+  background-color: var(--background-light); /* Ensure background is not black */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.plotHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.plotHeader h1 {
+  font-family: var(--header-font);
+  font-size: 3rem;
+  color: var(--primary-blue);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.plotLocation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--neutral-medium);
+}
+
+.plotLocation svg {
+  margin-right: 8px;
+  color: var(--primary-blue);
+}
+
+.plotImages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.plotImage {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.plotInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.infoItem {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.infoItem strong {
+  color: var(--primary-blue);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.adminInfo {
+  grid-column: 1 / -1; /* Span across all columns */
+  background-color: var(--neutral-light);
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.adminInfo h3 {
+  font-family: var(--header-font);
+  font-size: 1.8rem;
+  color: var(--neutral-dark);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.adminInfo p {
+  margin-bottom: 8px;
+  color: var(--neutral-medium);
+}
+
+.adminInfo strong {
+  color: var(--primary-blue);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .plotDetailsContainer {
+    padding: 0; /* Remove padding on very small screens to ensure full width */
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .plotHeader h1 {
+    font-size: 2.2rem;
+  }
+
+  .plotLocation {
+    font-size: 1rem;
+  }
+
+  .plotInfoGrid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .adminInfo {
+    padding: 20px;
+  }
+
+  .adminInfo h3 {
+    font-size: 1.5rem;
+  }
+}
