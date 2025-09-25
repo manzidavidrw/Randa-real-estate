@@ -19,6 +19,7 @@ const ThemeSwitcher = ({ theme, toggleTheme }) => {
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('managePlots');
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // New state for mobile sidebar visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +29,10 @@ const Dashboard = () => {
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
   };
 
   const handleLogout = () => {
@@ -82,25 +87,32 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={styles.dashboardContainer}>
-      <div className={styles.sidebar}>
+    <div className={`${styles.dashboardContainer} ${isSidebarOpen ? styles.sidebarOpen : ''}`}> {/* Apply sidebarOpen class conditionally */}
+      <button className={styles.hamburgerButton} onClick={toggleSidebar}> {/* Hamburger button */}
+        {isSidebarOpen ? (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        )}
+      </button>
+      <div className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarVisible : ''}`}> {/* Apply sidebarVisible class conditionally */}
         <div className={styles.sidebarHeader}>
           <h2>Admin Panel</h2>
         </div>
         <nav className={styles.sidebarNav}>
-          <a href="#" className={activeSection === 'registerAdmin' ? styles.active : ''} onClick={() => setActiveSection('registerAdmin')}>
+          <a href="#" className={activeSection === 'registerAdmin' ? styles.active : ''} onClick={() => { setActiveSection('registerAdmin'); toggleSidebar(); }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
             Register Admin
           </a>
-          <a href="#" className={activeSection === 'createPlot' ? styles.active : ''} onClick={() => setActiveSection('createPlot')}>
+          <a href="#" className={activeSection === 'createPlot' ? styles.active : ''} onClick={() => { setActiveSection('createPlot'); toggleSidebar(); }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             Create Plot
           </a>
-          <a href="#" className={activeSection === 'managePlots' ? styles.active : ''} onClick={() => setActiveSection('managePlots')}>
+          <a href="#" className={activeSection === 'managePlots' ? styles.active : ''} onClick={() => { setActiveSection('managePlots'); toggleSidebar(); }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
             Manage Plots
           </a>
-          <a href="#" className={activeSection === 'settings' ? styles.active : ''} onClick={() => setActiveSection('settings')}>
+          <a href="#" className={activeSection === 'settings' ? styles.active : ''} onClick={() => { setActiveSection('settings'); toggleSidebar(); }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 5.09 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 .33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82-.33H9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.82.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V15h.09z"></path></svg>
             Settings
           </a>
@@ -111,6 +123,7 @@ const Dashboard = () => {
         <h1>Dashboard Overview</h1>
         {renderContent()}
       </div>
+      {isSidebarOpen && <div className={styles.overlay} onClick={toggleSidebar}></div>} {/* Overlay for mobile sidebar */}
     </div>
   );
 };

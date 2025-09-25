@@ -110,3 +110,51 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
+
+@media (max-width: 768px) {
+  .managePlotsContainer {
+    padding: 15px;
+  }
+
+  .plotsGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .plotCard {
+    flex-direction: column;
+  }
+
+  .plotInfo {
+    padding: 10px;
+  }
+
+  .plotInfo h3 {
+    font-size: 1.1rem;
+  }
+
+  .plotInfo p {
+    font-size: 0.9rem;
+  }
+
+  .plotActions {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .editButton,
+  .deleteButton {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pageButton {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}

@@ -12,6 +12,10 @@
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
+.header.menuOpen {
+  overflow: hidden; /* Prevent scrolling of main content when menu is open */
+}
+
 .logo {
   font-family: var(--header-font);
   font-size: 2.2rem;
@@ -61,7 +65,7 @@
 }
 
 .nav {
-  display: flex;
+  display: flex; /* Always visible on desktop */
   margin-left: 30px;
   gap: 25px;
 }
@@ -80,7 +84,7 @@
 }
 
 .headerActions {
-  display: flex;
+  display: flex; /* Always visible on desktop */
   align-items: center;
   gap: 20px;
   margin-left: 30px;
@@ -114,44 +118,211 @@
   transform: scale(1.1);
 }
 
-/* Responsive design for smaller screens */
+/* Mobile-specific elements (hidden by default on desktop) */
+.hamburgerButton {
+  display: none;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.overlay {
+  display: none;
+}
+
+/* Responsive adjustments for screens up to 1024px (tablets and smaller laptops) */
 @media (max-width: 1024px) {
   .header {
-    flex-wrap: wrap;
     padding: 15px 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .logo {
-    margin-bottom: 15px;
-    margin-right: 0;
-    width: 100%;
-    text-align: center;
+    font-size: 2rem;
+    margin-right: 15px;
   }
 
   .searchBarContainer {
-    order: 3; /* Move search bar to bottom on smaller screens */
-    width: 100%;
+    flex-grow: 1;
+    order: 3; /* Push to new line on smaller screens */
     max-width: none;
     margin-top: 15px;
   }
 
-  .nav {
-    order: 2;
+  .nav,
+  .headerActions {
+    display: none; /* Hide desktop nav/actions on mobile */
+  }
+
+  .hamburgerButton {
+    display: block; /* Show hamburger button on mobile */
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 1001;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .hamburgerButton:hover {
+    background-color: #0056b3;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen to the right */
+    width: 75%; /* Adjustable width */
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-color) -4px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px; /* Space for the close icon */
+    transition: right 0.3s ease-in-out;
+    gap: 30px;
+  }
+
+  .mobileMenuOpen {
+    right: 0; /* Slide in from the right */
+  }
+
+  .navMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
     margin-left: 0;
-    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .navMobile a {
+    font-size: 1.1rem;
     width: 100%;
   }
 
-  .headerActions {
-    order: 1;
-    margin-left: auto; /* Push actions to the right */
-    margin-top: 15px;
+  .headerActionsMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    margin-left: 0;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .headerActionsMobile .loginButton {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .headerActionsMobile .userIcon {
+    align-self: flex-start;
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .header.menuOpen .overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .header.menuOpen {
+    overflow: hidden;
   }
 }
 
+/* Further adjustments for medium screens (e.g., larger phones in landscape, small tablets) */
 @media (max-width: 768px) {
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  .hamburgerButton {
+    right: 15px;
+    top: 12px;
+    padding: 8px;
+  }
+
+  .mobileMenu {
+    width: 80%; /* Wider on smaller screens */
+    padding-top: 70px;
+  }
+
+  .navMobile a,
+  .headerActionsMobile .loginButton {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+
+/* Further adjustments for small screens (e.g., portrait phones) */
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .searchBarContainer {
+    margin-top: 10px;
+  }
+
+  .searchBarInput,
+  .searchButton {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .hamburgerButton {
+    top: 10px;
+    right: 10px;
+    padding: 7px;
+  }
+
+  .mobileMenu {
+    width: 90%; /* Almost full width on very small screens */
+    padding-top: 60px;
+  }
+}
+
+/* Ensure desktop elements are visible and mobile elements are hidden on large screens */
+@media (min-width: 1025px) {
   .nav {
-    gap: 15px;
-    margin-bottom: 10px;
+    display: flex; /* Show desktop nav */
+  }
+
+  .headerActions {
+    display: flex; /* Show desktop actions */
+  }
+
+  .hamburgerButton,
+  .mobileMenu,
+  .overlay {
+    display: none; /* Hide mobile elements */
   }
 }

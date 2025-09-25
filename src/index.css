@@ -45,6 +45,21 @@ body {
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
+/* Prevent horizontal scrolling and ensure sizing is predictable */
+html, body {
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Make media responsive by default */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
 body[data-theme="light"] {
   /* Light theme specific adjustments if needed */
 }

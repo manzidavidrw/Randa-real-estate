@@ -117,3 +117,42 @@
     font-size: 1.2rem;
   }
 }
+
+@media (max-width: 480px) {
+  .testimonialsSliderContainer {
+    padding: 30px 10px;
+  }
+
+  .testimonialsSliderContainer h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .testimonialCard {
+    width: calc(100% - 20px); /* Adjust to full width minus padding */
+    margin: 0 10px; /* Add some horizontal margin */
+    padding: 20px;
+  }
+
+  .quote {
+    font-size: 1rem;
+  }
+
+  .author {
+    font-size: 0.9rem;
+  }
+
+  .location {
+    font-size: 0.8rem;
+  }
+
+  .sliderControls {
+    padding: 0 5px;
+  }
+
+  .scrollButton {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+}

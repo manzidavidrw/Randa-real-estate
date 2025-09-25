@@ -23,5 +23,11 @@
   .list {
     grid-template-columns: 1fr;
     padding: 30px 20px;
+    gap: 20px; /* Adjust gap for smaller screens */
+  }
+
+  .listView {
+    padding: 20px 15px; /* Adjust padding for list view on smaller screens */
+    gap: 15px; /* Adjust gap for list view on smaller screens */
   }
 }

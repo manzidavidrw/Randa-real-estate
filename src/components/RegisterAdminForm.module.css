@@ -97,3 +97,36 @@
   background-color: #218838;
   transform: translateY(-2px);
 }
+
+@media (max-width: 480px) {
+  .registerAdminForm {
+    max-width: 100%; /* Allow form to take full width */
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .formGroup label {
+    font-size: 0.85rem;
+  }
+
+  .formGroup input {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .passwordInputContainer input {
+    padding-right: 35px; /* Adjust space for toggle button */
+  }
+
+  .passwordToggleButton {
+    right: 8px;
+    font-size: 0.9rem;
+    padding: 3px;
+  }
+
+  .submitButton {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    margin-top: 5px;
+  }
+}

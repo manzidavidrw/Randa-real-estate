@@ -70,3 +70,29 @@
   background-color: #218838;
   transform: translateY(-2px);
 }
+
+@media (max-width: 480px) {
+  .createPlotForm {
+    max-width: 100%; /* Allow form to take full width */
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .formGroup label {
+    font-size: 0.85rem;
+  }
+
+  .formGroup input[type="text"],
+  .formGroup input[type="number"],
+  .formGroup textarea,
+  .formGroup select {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    margin-top: 5px;
+  }
+}

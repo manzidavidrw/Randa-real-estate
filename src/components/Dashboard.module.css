@@ -4,6 +4,31 @@
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative; /* Needed for absolute positioning of hamburger/overlay */
+}
+
+.dashboardContainer.sidebarOpen {
+  overflow: hidden; /* Prevent scrolling of main content when sidebar is open */
+}
+
+.hamburgerButton {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Changed from left to right */
+  left: unset; /* Remove left positioning */
+  z-index: 1100; /* Above sidebar */
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hamburgerButton:hover {
+  background-color: #0056b3;
 }
 
 .sidebar {
@@ -114,6 +139,7 @@
   border-radius: 12px;
   margin: 20px;
   box-shadow: var(--shadow-color) 0 5px 20px;
+  transition: filter 0.3s ease, transform 0.3s ease; /* Add transitions for smooth effects */
 }
 
 .dashboardContent h1 {
@@ -250,82 +276,65 @@ input:checked + .sliderRound:before {
   }
 
   .sidebar {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px 25px;
-    gap: 20px;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 0;
-    box-shadow: var(--shadow-color) 0px 5px 15px;
+    position: fixed;
+    top: 0;
+    right: -280px; /* Hide sidebar off-screen to the right */
+    left: unset; /* Remove left positioning */
+    height: 100vh;
+    width: 280px;
+    z-index: 1000;
+    padding-top: 80px; /* Space for hamburger button at the top */
+    box-shadow: var(--shadow-color) -4px 0px 15px rgba(0, 0, 0, 0.2); /* Shadow for sliding effect from right */
+    border-left: 1px solid var(--border-color); /* Border on the left side */
+    border-right: none; /* Remove right border */
+    border-radius: 20px 0 0 20px; /* Rounded only on the visible side */
+    transition: right 0.3s ease-in-out; /* Smooth slide transition from right */
   }
 
-  .sidebarHeader {
-    width: auto;
-    justify-content: flex-start;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-    flex-grow: 1;
+  .sidebarVisible {
+    right: 0; /* Slide sidebar into view from the right */
+    left: unset; /* Ensure left is unset */
   }
 
-  .sidebar h2 {
-    font-size: 1.8rem;
-    text-align: left;
-  }
-
-  .sidebar nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    flex-grow: unset;
-    width: 100%;
-    order: 3;
-  }
-
-  .sidebar nav a {
-    padding: 10px 15px;
-    font-size: 0.95rem;
-    margin-bottom: 0;
-    transform: translateX(0);
-    box-shadow: var(--shadow-color) 2px 2px 8px;
-  }
-
-  .sidebar nav a:hover {
-    transform: translateX(0);
-    box-shadow: var(--shadow-color) 2px 2px 10px;
-  }
-
-  .sidebar nav a svg {
-    margin-right: 10px;
-  }
-
-  .themeToggleContainer {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-    order: 2;
-    width: auto;
-    justify-content: center; /* Center on small screens */
-  }
-
-  .themeToggleButton {
-    width: auto;
-    margin: 0;
-  }
-
-  .logoutButton {
-    width: auto;
-    margin-top: 0;
-    order: 1;
+  .hamburgerButton {
+    display: block; /* Show hamburger button on small screens */
   }
 
   .dashboardContent {
-    margin: 15px;
-    padding: 30px;
+    margin-left: 0; /* Remove margin from content when sidebar is hidden */
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below sidebar, above content */
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+  }
+
+  .dashboardContainer.sidebarOpen .dashboardContent {
+    filter: blur(2px); /* Blur content when sidebar is open */
+    pointer-events: none; /* Disable interaction with blurred content */
+  }
+
+  /* Adjustments for when sidebar is open */
+  .dashboardContainer.sidebarOpen .dashboardContent {
+    /* Add transform for content if you want it to slide with the sidebar */
+    /* transform: translateX(280px); */
+  }
+
+  .dashboardContent {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: var(--shadow-color) 0 5px 20px;
+    transition: filter 0.3s ease, transform 0.3s ease; /* Add transitions for smooth effects */
   }
 
   .dashboardContent h1 {
@@ -338,5 +347,67 @@ input:checked + .sliderRound:before {
 
   .dashboardSection.settings {
     align-items: center; /* Center items on small screens */
+  }
+}
+
+/* Restore original desktop sidebar styles for larger screens */
+@media (min-width: 993px) {
+  .sidebar {
+    position: relative;
+    right: unset; /* Remove right positioning */
+    left: 0;
+    width: 280px; /* Original width */
+    height: auto; /* Revert to auto height */
+    padding-top: 30px; /* Revert to original padding */
+    border-radius: 20px; /* Original border-radius */
+    box-shadow: var(--shadow-color) 0px 8px 30px rgba(0, 0, 0, 0.2); /* Original shadow */
+    border-left: none; /* Remove left border */
+  }
+
+  .hamburgerButton {
+    display: none;
+  }
+
+  .dashboardContent {
+    margin-left: 20px; /* Adjust margin for content when sidebar is present */
+  }
+
+  .overlay {
+    display: none; /* Hide overlay on desktop */
+  }
+}
+
+/* Further refine existing mobile styles to integrate with the new sidebar behavior */
+@media (max-width: 480px) {
+  .dashboardContent {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .dashboardContent h1 {
+    font-size: 2rem;
+  }
+
+  .dashboardSection h2 {
+    font-size: 1.5rem;
+  }
+
+  .hamburgerButton {
+    top: 10px;
+    right: 10px; /* Changed from left to right */
+    left: unset;
+    padding: 8px;
+  }
+
+  .sidebar {
+    width: 250px; /* Slightly narrower sidebar on very small screens */
+    right: -250px; /* Hide sidebar off-screen to the right */
+    left: unset;
+    padding-top: 60px;
+  }
+
+  .sidebarVisible {
+    right: 0; /* Slide sidebar into view from the right */
+    left: unset;
   }
 }
